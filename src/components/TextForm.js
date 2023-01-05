@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 
 
-export default function TextForm(props) {
+
+function TextForm(props) {
 
   const speak = () => {
   let msg = new SpeechSynthesisUtterance();
@@ -86,3 +87,4 @@ const handleNormal = ()=>{
     </>
   )
 }
+export default TextForm

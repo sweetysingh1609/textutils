@@ -5,6 +5,17 @@ import TextForm from './components/TextForm';
 import About from './components/About';
 import { useState } from 'react';
 import Alert from './components/Alert';
+import { Router, Switch, Route, } from 'react-router-dom';
+import {createBrowserHistory} from 'history';
+export const customHistory = createBrowserHistory();  //This maintains custom history
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Link
+// } from "react-router-dom";
+// import { Routes ,Route } from 'react-router-dom';
+
+
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
@@ -36,13 +47,29 @@ function App() {
   }
   return (
   <>
+  <Router history={customHistory}>
+    
   <Navbar title="TextUtils" mode={mode} toogleMode={toogleMode} />
   <Alert alert={alert} />
   <div className="container my-3">
-  <TextForm showAlert={showAlert} mode={mode} heading="Enter the text to analyze below"/>
-  {/* <About/> */}
-  </div>
-  </>
+    
+    <Switch>
+          <Route exact path="/about" >
+            <About />
+          </Route>
+          
+         
+          <Route exact path="/"  >
+            <TextForm showAlert={showAlert} mode={mode} heading="Enter the text to analyze below"/>
+          </Route>
+        </Switch>
+        
+        
+</div>
+
+        </Router>
+  
+   </>
   );
 }
 
