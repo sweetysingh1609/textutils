@@ -44,6 +44,7 @@ const handleNormal = ()=>{
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Text is Copied to Clipboard!","success");
 
   }
@@ -64,18 +65,18 @@ const handleNormal = ()=>{
     <h1>{props.heading}</h1>
   <div className="mb-3">
   
-  <textarea style={{backgroundColor:props.mode==='dark' ? 'grey': 'white', color: props.mode==='dark' ? 'white': 'black' }} onChange={handleOnChange}className="form-control" value={text} id="myBox" rows="8"></textarea>
+  <textarea style={{backgroundColor:props.mode==='dark' ? '#13466e': 'white', color: props.mode==='dark' ? 'white': 'black' }} onChange={handleOnChange}className="form-control" value={text} id="myBox" rows="8"></textarea>
 </div>
-<button  onClick={handleUpClick} className="btn btn-primary mx-1">Convert to UpperCase</button>
-<button  onClick={handleLowClick} className="btn btn-primary mx-1">Convert to LowerCase</button>
-<button  onClick={handleItalic} className="btn btn-primary mx-1">Convert to Italic</button>
-<button  onClick={handleNormal} className="btn btn-primary mx-1">Convert to Normal</button>
-<button  onClick={handleExtraSpaces} className="btn btn-primary mx-1">Remove Extra Space</button>
-<button  onClick={handleCopy} className="btn btn-primary mx-1">Copy Text</button>
-<button  onClick={handleClear} className="btn btn-primary mx-1">Clear Text</button>
+<button disabled={text.length===0} onClick={handleUpClick} className="btn btn-primary mx-1 my-1">Convert to UpperCase</button>
+<button disabled={text.length===0} onClick={handleLowClick} className="btn btn-primary mx-1 my-1">Convert to LowerCase</button>
+<button disabled={text.length===0} onClick={handleItalic} className="btn btn-primary mx-1 my-1">Convert to Italic</button>
+<button disabled={text.length===0} onClick={handleNormal} className="btn btn-primary mx-1 my-1">Convert to Normal</button>
+<button disabled={text.length===0} onClick={handleExtraSpaces} className="btn btn-primary mx-1 my-1">Remove Extra Space</button>
+<button disabled={text.length===0} onClick={handleCopy} className="btn btn-primary mx-1 my-1">Copy Text</button>
+<button disabled={text.length===0} onClick={handleClear} className="btn btn-primary mx-1 my-1">Clear Text</button>
 
 
-<button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
+<button disabled={text.length===0} type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
     </div>
     <div className="container my-3" style={{color:props.mode==='light' ? 'black': 'white'}}>
       <h2>Your Text Summary</h2>
